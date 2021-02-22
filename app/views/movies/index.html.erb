@@ -9,7 +9,6 @@
   <li>
     <p>Title: <%= movie.title %></p>
     <p>Summary: <%= movie.summary %></p>
-
     <button><%= link_to 'Show', movie %></button>
     <button><%= link_to 'Edit', edit_movie_path(movie) %></button>
     <button><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></button>
