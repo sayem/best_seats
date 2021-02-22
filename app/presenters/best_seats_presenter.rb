@@ -62,12 +62,15 @@ class BestSeatsPresenter
           sorted_columns = best_seats.sort_by {|x| x['column'] }
           first_seat = sorted_columns.first
           last_seat = sorted_columns.last
+          seats_left = sorted_seats - best_seats
           
-          if ((seat['column'] - first_seat['column']).abs == 1) || ((seat['column'] - last_seat['column']).abs == 1)
+          if seat_differences(seat, first_seat, last_seat)
             best_seats.push(seat)
           else
-            best_seats.clear
-            best_seats.push(seat)
+            if seats_left.none? {|x| seat_differences(x, first_seat, last_seat) }
+              best_seats.clear
+              best_seats.push(seat)
+            end
           end
         end
       else
@@ -76,5 +79,9 @@ class BestSeatsPresenter
     end
 
     best_seats
+  end
+
+  def seat_differences(seat, first_seat, last_seat)
+    ((seat['column'] - first_seat['column']).abs == 1) || ((seat['column'] - last_seat['column']).abs == 1)
   end
 end
