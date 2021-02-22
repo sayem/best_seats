@@ -1,0 +1,17 @@
+<h1>Movies</h1>
+
+<p>Add Movie</p>
+
+<ul>
+  <% @movies.each do |movie| %>
+  <li>
+    <p>Title: <%= movie.title %></p>
+    <p>Summary: <%= movie.summary %></p>
+    <p>Year: <%= movie.year %></p>
+    <p>Genre: <%= movie.genre %></p>
+    <p><%= movie.imdb_link ? link_to('IMDb Link', movie.imdb_link, target: '_blank') : '' %></p>
+    <button>Edit</button>
+    <button>Delete</button>
+  </li>
+  <% end %>
+</ul>
