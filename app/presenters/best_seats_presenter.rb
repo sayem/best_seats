@@ -18,7 +18,13 @@ class BestSeatsPresenter
                                   .select {|x| x['column'] <= columns }
 
     result = best_seats_result(available_seats, seats_number, rows, middle)
-    result_ids = result.any? ? result.map {|x| x['id'] }.join(', ') : 'No seats found'
+    
+    if result.any?
+      seat_ids = result.map {|x| x['id'] }.join(', ')
+      "Best seats: #{seat_ids}"
+    else
+      'No seats found'
+    end
   end
 
   private
@@ -66,11 +72,9 @@ class BestSeatsPresenter
           
           if seat_differences(seat, first_seat, last_seat)
             best_seats.push(seat)
-          else
-            if seats_left.none? {|x| seat_differences(x, first_seat, last_seat) }
-              best_seats.clear
-              best_seats.push(seat)
-            end
+          elsif seats_left.none? {|x| seat_differences(x, first_seat, last_seat) }
+            best_seats.clear
+            best_seats.push(seat)
           end
         end
       else
