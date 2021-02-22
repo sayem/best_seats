@@ -32,7 +32,8 @@ class BestSeatsPresenter
   def best_seats_result(available_seats, seats_number, rows, middle)
     best_seats = []
     n = 0
-    
+
+    # Assuming here that there are max 26 rows based on the alphabet, the instructions don't specify max rows
     ('a'..'z').each do |row|
       if n < rows
         row_seats = available_seats.select {|x| x['row'] == row }
