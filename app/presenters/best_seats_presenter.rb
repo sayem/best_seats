@@ -15,6 +15,7 @@ class BestSeatsPresenter
     
     middle = columns.even? ? columns / 2 : (columns / 2 ) + 1
     available_seats = seats.values.select {|x| x['status'] == 'AVAILABLE' }
+                                  .select {|x| x['column'] <= columns }
 
     result = best_seats_result(available_seats, seats_number, rows, middle)
     result_ids = result.any? ? result.map {|x| x['id'] }.join(', ') : 'No seats found'
@@ -58,9 +59,11 @@ class BestSeatsPresenter
         if best_seats.empty?
           best_seats.push(seat)
         else
-          last_seat = best_seats[best_seats.length - 1]
+          sorted_columns = best_seats.sort_by {|x| x['column'] }
+          first_seat = sorted_columns.first
+          last_seat = sorted_columns.last
           
-          if (seat['distance'] - 1) == last_seat['distance']
+          if ((seat['column'] - first_seat['column']).abs == 1) || ((seat['column'] - last_seat['column']).abs == 1)
             best_seats.push(seat)
           else
             best_seats.clear
