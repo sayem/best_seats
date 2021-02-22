@@ -1,0 +1,49 @@
+<%= form_for(@movie, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :title, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :summary, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :summary, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :year, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :year, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :genre, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :genre, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :imdb_link, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area :imdb_link, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

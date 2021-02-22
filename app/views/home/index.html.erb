@@ -1,14 +1,20 @@
 <div id="page-container">
   <div id="header">
     <h1>Best Available Seats</h1>
+    <button><%= link_to "Movie Catalog", movies_path %></button>    
     <form>
-      <p>How many seats do you need?</p>
-      <input name="seats" value="<%= @seats %>" placeholder="Number of Seats Needed"></input>
-      <textarea name="available_seats" value="<%= @available_seats %>" placeholder="Available Seats JSON" rows="15" cols="30"><%= @available_seats %></textarea>
+      <p>
+        <label>How many seats do you need?</label>
+        <input name="seats" value="<%= @seats %>" placeholder="Number of Seats"></input>
+      </p>
+      <p>
+        <textarea name="available_seats" value="<%= @available_seats %>" placeholder="Available Seats JSON" rows="15" cols="30"><%= @available_seats %></textarea>
+      </p>
       <button>Find Best Seats</button>
     </form>
-    <div class="errors"><%= flash[:notice] %></div>
+    <p>
+      <div class="errors"><%= flash[:notice] %></div>
+    </p>
   </div>
   <p id="result"><%= @result %></p>
-  <p><%= link_to "Movie Catalog", movies_path %></p>
 </div>

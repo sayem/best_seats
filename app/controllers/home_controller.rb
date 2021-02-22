@@ -21,7 +21,7 @@ class HomeController < ApplicationController
   end
 
   def valid_available_seats(available_seats)
-    json = JSON.parse(available_seats) rescue nil
+    json = JSON.parse(available_seats.strip) rescue nil
     available_seats.present? && json && json['venue'] && json['seats']
   end
 end

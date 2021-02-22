@@ -1,17 +1,18 @@
-<h1>Movies</h1>
+<p id="notice"><%= flash[:notice] %></p>
+<h1>Movie Catalog</h1>
 
-<p>Add Movie</p>
+<button><%= link_to 'Best Available Seats', root_url %></button>
+<button><%= link_to 'Add Movie', new_movie_path %></button>
 
 <ul>
   <% @movies.each do |movie| %>
   <li>
     <p>Title: <%= movie.title %></p>
     <p>Summary: <%= movie.summary %></p>
-    <p>Year: <%= movie.year %></p>
-    <p>Genre: <%= movie.genre %></p>
-    <p><%= movie.imdb_link ? link_to('IMDb Link', movie.imdb_link, target: '_blank') : '' %></p>
-    <button>Edit</button>
-    <button>Delete</button>
+
+    <button><%= link_to 'Show', movie %></button>
+    <button><%= link_to 'Edit', edit_movie_path(movie) %></button>
+    <button><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></button>
   </li>
   <% end %>
 </ul>

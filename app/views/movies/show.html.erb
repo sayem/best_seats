@@ -1,1 +1,13 @@
-<p></p>
+<p id="notice"><%= flash[:notice] %></p>
+
+<ul>
+  <li>Title: <%= @movie.title %></li>
+  <li>Summary: <%= @movie.summary %></li>
+  <li>Year: <%= @movie.year %></li>
+  <li>Genre: <%= @movie.genre %></li>
+  <li><%= @movie.imdb_link.present? ? link_to('IMDb Link', @movie.imdb_link, target: '_blank') : '' %></li>
+  <p>
+    <%= link_to 'Edit', edit_movie_path(@movie) %> |
+    <%= link_to 'Back', movies_path %>
+  </p>
+</ul>
